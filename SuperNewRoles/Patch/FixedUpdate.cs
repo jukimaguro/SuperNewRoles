@@ -134,6 +134,10 @@ namespace SuperNewRoles.Patch
                             {
                                 MadHawk.FixedUpdate.Postfix();
                             }
+                            else if (PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.HawkingJackal))
+                            {
+                                HawkingJackal.FixedUpdate.Postfix();
+                            }
                             Minimalist.FixedUpdate.Postfix();
                         }
                         else if (PlayerControl.LocalPlayer.isDead())

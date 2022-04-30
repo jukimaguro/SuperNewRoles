@@ -76,15 +76,15 @@ namespace SuperNewRoles.Roles
         }
         public static void TimerEnd()
         {
-            /**
-            if (PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.Hawk))
+            
+            if (PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.HawkingJackal))
             {
                 MapBehaviour.Instance.Close();
                 HudManager.Instance.KillButton.gameObject.SetActive(true);
                 HudManager.Instance.ReportButton.gameObject.SetActive(true);
                 HudManager.Instance.SabotageButton.gameObject.SetActive(true);
             }
-            **/
+            
         }
         public class FixedUpdate
         {
