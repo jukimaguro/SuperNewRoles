@@ -447,6 +447,7 @@ namespace SuperNewRoles.EndGame
             notWinners.AddRange(RoleClass.Jester.JesterPlayer);
             notWinners.AddRange(RoleClass.MadMate.MadMatePlayer);
             notWinners.AddRange(RoleClass.Jackal.JackalPlayer);
+            notWinners.AddRange(RoleClass.HawkingJackal.HawkingJackalPlayer);
             notWinners.AddRange(RoleClass.Jackal.SidekickPlayer);
             notWinners.AddRange(RoleClass.JackalFriends.JackalFriendsPlayer);
             notWinners.AddRange(RoleClass.God.GodPlayer);
@@ -524,6 +525,11 @@ namespace SuperNewRoles.EndGame
                     TempData.winners.Add(wpd);
                 }
                 foreach (PlayerControl p in RoleClass.JackalFriends.JackalFriendsPlayer)
+                {
+                    WinningPlayerData wpd = new WinningPlayerData(p.Data);
+                    TempData.winners.Add(wpd);
+                }
+                foreach (PlayerControl p in RoleClass.HawkingJackal.HawkingJackalPlayer)
                 {
                     WinningPlayerData wpd = new WinningPlayerData(p.Data);
                     TempData.winners.Add(wpd);
@@ -1115,7 +1121,7 @@ namespace SuperNewRoles.EndGame
                         if (playerInfo.Object.isAlive())
                         {
                             numTotalAlive++;
-                            if (playerInfo.Object.isRole(RoleId.Jackal) || playerInfo.Object.isRole(CustomRPC.RoleId.Sidekick))
+                            if (playerInfo.Object.isRole(RoleId.Jackal) || playerInfo.Object.isRole(CustomRPC.RoleId.Sidekick) || playerInfo.Object.isRole(CustomRPC.RoleId.HawkingJackal))
                             {
                                 numTotalJackalTeam++;
                             }

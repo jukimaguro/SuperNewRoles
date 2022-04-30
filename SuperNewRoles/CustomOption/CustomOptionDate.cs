@@ -381,6 +381,15 @@ namespace SuperNewRoles.CustomOption
         public static CustomOption MadJesterIsImpostorLight;
         public static CustomOption IsMadJesterTaskClearWin;
 
+        public static CustomRoleOption HawkingJackalOption;
+        public static CustomOption HawkingJackalPlayerCount;
+        public static CustomOption HawkingJackalCoolTime;
+        public static CustomOption HawkingJackalDurationTime;
+        public static CustomOption HawkingJackalKillCoolDown;
+        public static CustomOption HawkingJackalIsUseVent;
+        public static CustomOption HawkingJackalIsUseSabo;
+        public static CustomOption HawkingJackalIsImpostorLight;
+
         public static CustomOption QuarreledOption;
         public static CustomOption QuarreledTeamCount;
         public static CustomOption QuarreledOnlyCrewMate;
@@ -795,6 +804,14 @@ namespace SuperNewRoles.CustomOption
             MadJesterIsUseVent = CustomOption.Create(309, ModTranslation.getString("MadMateUseVentSetting"), false, MadJesterOption);
             MadJesterIsImpostorLight = CustomOption.Create(310, ModTranslation.getString("MadMateImpostorLightSetting"), false, MadJesterOption);
             IsMadJesterTaskClearWin = CustomOption.Create(311, "JesterIsWinClearTaskSetting", false, MadJesterOption);
+
+            HawkingJackalOption = new CustomRoleOption(312, "HawkingJackalName", RoleClass.HawkingJackal.color, 1);
+            HawkingJackalPlayerCount = CustomOption.Create(37, cs(Color.white, "SettingPlayerCountName"), CrewPlayers[0], CrewPlayers[1], CrewPlayers[2], CrewPlayers[3], HawkingJackalOption);
+            HawkingJackalKillCoolDown = CustomOption.Create(38, ModTranslation.getString("JackalCoolDownSetting"), 30f, 2.5f, 60f, 2.5f, HawkingJackalOption, format: "unitSeconds");
+            HawkingJackalIsUseVent = CustomOption.Create(160, ModTranslation.getString("JackalUseVentSetting"), true, HawkingJackalOption);
+            HawkingJackalIsImpostorLight = CustomOption.Create(310, ModTranslation.getString("MadMateImpostorLightSetting"), false, HawkingJackalOption);
+            HawkingJackalCoolTime = CustomOption.Create(313, ModTranslation.getString("HawkCoolTimeSetting"), 15f, 1f, 120f, 2.5f, HawkingJackalOption, format: "unitCouples");
+            HawkingJackalDurationTime = CustomOption.Create(314, ModTranslation.getString("HawkDurationTimeSetting"), 5f, 1f, 60f, 2.5f, HawkingJackalOption, format: "unitCouples");
 
             QuarreledOption = CustomOption.Create(122, cs(RoleClass.Quarreled.color, "QuarreledName"), false, null, isHeader: true);
             QuarreledTeamCount = CustomOption.Create(124, cs(Color.white, "QuarreledTeamCountSetting"), QuarreledPlayers[0], QuarreledPlayers[1], QuarreledPlayers[2], QuarreledPlayers[3], QuarreledOption);

@@ -46,7 +46,7 @@ namespace SuperNewRoles.Buttons
             }
             if (Roles.RoleClass.NiceScientist.IsScientist)
             {
-                var TimeSpanDate = new TimeSpan(0, 0, 0, (int)durationtime);
+                var TimeSpanDate = new TimeSpan(0, 0, 0, (int)durationtime);                
                 Buttons.HudManagerStartPatch.ScientistButton.MaxTimer = durationtime;
                 Buttons.HudManagerStartPatch.ScientistButton.Timer = (float)((Roles.RoleClass.NiceScientist.ButtonTimer + TimeSpanDate) - DateTime.Now).TotalSeconds;
                 if (Buttons.HudManagerStartPatch.ScientistButton.Timer <= 0f)
@@ -71,6 +71,7 @@ namespace SuperNewRoles.Buttons
             if (RoleClass.Hawk.Timer == 0 && PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.Hawk)) return;
             if (RoleClass.NiceHawk.Timer == 0 && PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.NiceHawk)) return;
             if (RoleClass.MadHawk.Timer == 0 && PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.MadHawk)) return;
+            if (RoleClass.HawkingJackal.Timer == 0 && PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.HawkingJackal)) return;
             RoleClass.Hawk.IsHawkOn = true;
             var TimeSpanDate = new TimeSpan(0, 0, 0, (int)Roles.RoleClass.Hawk.DurationTime);
             if (PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.NiceHawk))
@@ -84,6 +85,12 @@ namespace SuperNewRoles.Buttons
                 TimeSpanDate = new TimeSpan(0, 0, 0, (int)Roles.RoleClass.MadHawk.DurationTime);
                 RoleClass.MadHawk.Timer = (float)((Roles.RoleClass.MadHawk.ButtonTimer + TimeSpanDate) - DateTime.Now).TotalSeconds;
                 if (RoleClass.MadHawk.Timer <= 0f) RoleClass.MadHawk.Timer = 0f; MadHawk.TimerEnd(); RoleClass.Hawk.IsHawkOn = false; return;
+            }
+            if (PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.HawkingJackal))
+            {
+                TimeSpanDate = new TimeSpan(0, 0, 0, (int)Roles.RoleClass.HawkingJackal.DurationTime);
+                RoleClass.HawkingJackal.Timer = (float)((Roles.RoleClass.HawkingJackal.ButtonTimer + TimeSpanDate) - DateTime.Now).TotalSeconds;
+                if (RoleClass.HawkingJackal.Timer <= 0f) RoleClass.HawkingJackal.Timer = 0f; HawkingJackal.TimerEnd(); RoleClass.Hawk.IsHawkOn = false; return;
             }
             RoleClass.Hawk.Timer = (float)((Roles.RoleClass.Hawk.ButtonTimer + TimeSpanDate) - DateTime.Now).TotalSeconds;
             if (RoleClass.Hawk.Timer <= 0f && PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.Hawk)) RoleClass.Hawk.Timer = 0f; Hawk.TimerEnd(); RoleClass.Hawk.IsHawkOn = false; return;

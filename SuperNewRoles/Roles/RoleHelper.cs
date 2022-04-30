@@ -217,6 +217,9 @@ namespace SuperNewRoles
                 case RoleId.MadJester:
                     returntext = CustomOptions.MadJesterIsUseVent.name + ":" + CustomOptions.MadJesterIsUseVent.getString() + "\n";
                     break;
+                case RoleId.HawkingJackal:
+                    returntext = CustomOptions.MadJesterIsUseVent.name + ":" + CustomOptions.HawkingJackalIsUseVent.getString() + "\n";
+                    break;
             }
             return returntext;
         }
@@ -425,6 +428,9 @@ namespace SuperNewRoles
                     break;
                 case (CustomRPC.RoleId.MadHawk):
                     Roles.RoleClass.MadHawk.MadHawkPlayer.Add(player);
+                    break;
+                case (CustomRPC.RoleId.HawkingJackal):
+                    Roles.RoleClass.HawkingJackal.HawkingJackalPlayer.Add(player);
                     break;
                 //ロールアド
                 default:
@@ -636,7 +642,6 @@ namespace SuperNewRoles
                 case (CustomRPC.RoleId.MadHawk):
                     Roles.RoleClass.MadHawk.MadHawkPlayer.RemoveAll(ClearRemove);
                     break;
-                //ロールリモベ
                 case (CustomRPC.RoleId.NiceHawk):
                     Roles.RoleClass.NiceHawk.NiceHawkPlayer.RemoveAll(ClearRemove);
                     break;
@@ -645,6 +650,9 @@ namespace SuperNewRoles
                     break;
                 case (CustomRPC.RoleId.MadJester):
                     Roles.RoleClass.MadJester.MadJesterPlayer.RemoveAll(ClearRemove);
+                    break;
+                case (CustomRPC.RoleId.HawkingJackal):
+                    Roles.RoleClass.HawkingJackal.HawkingJackalPlayer.RemoveAll(ClearRemove);
                     break;
                 //ロールリモベ
             }
@@ -719,7 +727,10 @@ namespace SuperNewRoles
                 case (RoleId.MadJester):
                     IsTaskClear = true;
                     break;
-                    //タスククリアか
+                case (RoleId.HawkingJackal):
+                    IsTaskClear = true;
+                    break; 
+                //タスククリアか
             }
             if (!IsTaskClear && ModeHandler.isMode(ModeId.SuperHostRoles) && player.isRole(RoleId.Sheriff))
             {
@@ -750,6 +761,7 @@ namespace SuperNewRoles
             if (RoleClass.MadJester.MadJesterPlayer.IsCheckListPlayerControl(player) && Roles.RoleClass.MadJester.IsUseVent) return true;
             if (RoleClass.MadStuntMan.MadStuntManPlayer.IsCheckListPlayerControl(player) && Roles.RoleClass.MadStuntMan.IsUseVent) return true;
             if (RoleClass.MadHawk.MadHawkPlayer.IsCheckListPlayerControl(player) && Roles.RoleClass.MadHawk.IsUseVent) return true;
+            if (RoleClass.HawkingJackal.HawkingJackalPlayer.IsCheckListPlayerControl(player) && Roles.RoleClass.HawkingJackal.IsUseVent) return true;
             return false;
         }
         public static bool IsSabotage()
@@ -782,6 +794,7 @@ namespace SuperNewRoles
             if (player.isRole(RoleId.MadStuntMan) && RoleClass.MadStuntMan.IsImpostorLight) return true;
             if (player.isRole(RoleId.MadHawk) && RoleClass.MadHawk.IsImpostorLight) return true;
             if (player.isRole(RoleId.MadJester) && RoleClass.MadJester.IsImpostorLight) return true;
+            if (player.isRole(RoleId.HawkingJackal) && RoleClass.HawkingJackal.IsImpostorLight) return true;
             return false;
         }
         public static bool isNeutral(this PlayerControl player)
@@ -820,6 +833,9 @@ namespace SuperNewRoles
                     IsNeutral = true;
                     break;
                 case (RoleId.Amnesiac):
+                    IsNeutral = true;
+                    break;
+                case (RoleId.HawkingJackal):
                     IsNeutral = true;
                     break;
                 //第三か
@@ -1167,6 +1183,10 @@ namespace SuperNewRoles
                 {
                 return CustomRPC.RoleId.MadJester;
                 }
+            else if (Roles.RoleClass.HawkingJackal.HawkingJackalPlayer.IsCheckListPlayerControl(player))
+            {
+                return CustomRPC.RoleId.HawkingJackal;
+            }
             //ロールチェック
 
             }

@@ -208,10 +208,20 @@ namespace SuperNewRoles.Buttons
                            RoleClass.MadHawk.timer1 = 10;
                            RoleClass.MadHawk.Timer2 = DateTime.Now;
                        }
+                       if (PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.HawkingJackal))
+                       {
+                           RoleClass.HawkingJackal.Timer = RoleClass.HawkingJackal.DurationTime;
+                           RoleClass.HawkingJackal.ButtonTimer = DateTime.Now;
+                           HawkHawkEyeButton.MaxTimer = RoleClass.HawkingJackal.CoolTime;
+                           HawkHawkEyeButton.Timer = RoleClass.HawkingJackal.CoolTime;
+                           RoleClass.HawkingJackal.Postion = PlayerControl.LocalPlayer.transform.localPosition;
+                           RoleClass.HawkingJackal.timer1 = 10;
+                           RoleClass.HawkingJackal.Timer2 = DateTime.Now;
+                       }
                        RoleClass.Hawk.IsHawkOn = true;
                    }
                },
-               () => { return PlayerControl.LocalPlayer.isAlive() && PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.Hawk) || PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.NiceHawk) || PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.MadHawk); },
+               () => { return PlayerControl.LocalPlayer.isAlive() && PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.Hawk) || PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.NiceHawk) || PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.MadHawk) || PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.HawkingJackal); },
                () =>
                {
                    return PlayerControl.LocalPlayer.CanMove;
@@ -232,6 +242,11 @@ namespace SuperNewRoles.Buttons
                    {
                        HawkHawkEyeButton.MaxTimer = RoleClass.MadHawk.CoolTime;
                        HawkHawkEyeButton.Timer = RoleClass.MadHawk.CoolTime;
+                   }
+                   if (PlayerControl.LocalPlayer.isRole(CustomRPC.RoleId.HawkingJackal))
+                   {
+                       HawkHawkEyeButton.MaxTimer = RoleClass.HawkingJackal.CoolTime;
+                       HawkHawkEyeButton.Timer = RoleClass.HawkingJackal.CoolTime;
                    }
                    RoleClass.Hawk.IsHawkOn = false;
                },
@@ -361,11 +376,17 @@ namespace SuperNewRoles.Buttons
                         ModHelpers.checkMuderAttemptAndKill(PlayerControl.LocalPlayer, Jackal.JackalFixedPatch.JackalsetTarget());
                         Jackal.resetCoolDown();
                     }
+                    if (HawkingJackal.HawkingJackalFixedPatch.HawkingJackalsetTarget() && RoleHelpers.isAlive(PlayerControl.LocalPlayer) && PlayerControl.LocalPlayer.CanMove)
+                    {
+                        ModHelpers.checkMuderAttemptAndKill(PlayerControl.LocalPlayer, HawkingJackal.HawkingJackalFixedPatch.HawkingJackalsetTarget());
+                        HawkingJackal.resetCoolDown();
+                    }
                 },
-                () => { return RoleHelpers.isAlive(PlayerControl.LocalPlayer) && RoleClass.Jackal.JackalPlayer.IsCheckListPlayerControl(PlayerControl.LocalPlayer); },
+                () => { return RoleHelpers.isAlive(PlayerControl.LocalPlayer) && RoleClass.Jackal.JackalPlayer.IsCheckListPlayerControl(PlayerControl.LocalPlayer) || RoleHelpers.isAlive(PlayerControl.LocalPlayer) && RoleClass.HawkingJackal.HawkingJackalPlayer.IsCheckListPlayerControl(PlayerControl.LocalPlayer); },
                 () =>
                 {
                     return Jackal.JackalFixedPatch.JackalsetTarget() && PlayerControl.LocalPlayer.CanMove;
+                    return HawkingJackal.HawkingJackalFixedPatch.HawkingJackalsetTarget() && PlayerControl.LocalPlayer.CanMove;
                 },
                 () => { Jackal.EndMeeting(); },
                 __instance.KillButton.graphic.sprite,

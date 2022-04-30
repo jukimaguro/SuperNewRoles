@@ -105,6 +105,7 @@ namespace SuperNewRoles.Roles
             MadStuntMan.ClearAndReload();
             MadHawk.ClearAndReload();
             MadJester.ClearAndReload();
+            HawkingJackal.ClearAndReload();
             //ロールクリア
             Quarreled.ClearAndReload();
             Lovers.ClearAndReload();
@@ -1436,6 +1437,41 @@ namespace SuperNewRoles.Roles
                 IsUseVent = CustomOptions.MadJesterIsUseVent.getBool();
                 IsImpostorLight = CustomOptions.MadJesterIsImpostorLight.getBool();
                 IsMadJesterTaskClearWin = CustomOptions.IsMadJesterTaskClearWin.getBool();
+            }
+        }
+        public static class HawkingJackal
+        {
+            public static List<PlayerControl> HawkingJackalPlayer;
+            public static Color32 color = new Color32(0, 255, 255, byte.MaxValue);
+            public static float KillCoolDown;
+            public static bool IsUseVent;
+            public static bool IsUseSabo;
+            public static bool IsImpostorLight;
+            public static float CoolTime;
+            public static float DurationTime;
+            public static float Timer;
+            public static DateTime ButtonTimer;
+            public static float Default;
+            public static float CameraDefault;
+            public static Vector3 Postion;
+            public static float timer1;
+            public static DateTime Timer2;
+
+            public static void ClearAndReload()
+            {
+                HawkingJackalPlayer = new List<PlayerControl>();
+                KillCoolDown = CustomOptions.HawkingJackalKillCoolDown.getFloat();
+                IsUseVent = CustomOptions.HawkingJackalIsUseVent.getBool();
+                IsUseSabo = CustomOptions.HawkingJackalIsUseSabo.getBool();
+                CoolTime = CustomOptions.HawkingJackalCoolTime.getFloat();
+                DurationTime = CustomOptions.HawkingJackalDurationTime.getFloat();
+                Timer = 0;
+                ButtonTimer = DateTime.Now;
+                CameraDefault = Camera.main.orthographicSize;
+                Default = HudManager.Instance.UICamera.orthographicSize;
+                Postion = new Vector3(0, 0, 0);
+                timer1 = 0;
+                Timer2 = DateTime.Now;
             }
         }
         //新ロールクラス
